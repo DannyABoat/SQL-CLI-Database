@@ -22,21 +22,33 @@ exports.list = async() =>{
     }  
 };
 
-exports.updateOne = async (argv)=> {
-
-    newTitle = await Film.update({ title: argv.newTitle }, {
-        where: {
-            title: argv.title
+exports.updateFilm = async (film) => {
+    try {
+      await Film.update({
+        name: argv.title,
+        actor: argv.actor,
+        genre: argv.genre,
+        producer: argv.producer
+      },
+      {where: {
+          id: film.id
         }
-    });
-    console.log(`Movie title updated from ${argv.title} to ${argv.newTitle}`)
+});
+        console.log(`Movie id: ${film.id} was updated`)
+    } catch (error) {
+      console.log(error)
+    }
 };
 
-exports.deleteOne = async ()=>{
-    const deletedFilm = await Film.destroy({
+
+exports.deleteFilm = async (film) => {
+    try {
+      await Film.destroy({
         where: {
-          title: argv.title
+          id: film.id
         }
-      });
-    console.log(`Movie titled ${argv.title} is deleted`)
-};
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  };
