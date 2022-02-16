@@ -51,4 +51,4 @@ exports.deleteFilm = async (film) => {
     } catch (error) {
       console.log(error)
     }
-  };
+  }
